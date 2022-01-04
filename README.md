@@ -9,22 +9,20 @@
 
 ## About Resellme
 
-Resellme is a platform that allows resellers to start sellings hosting and domains in less than 5 minutes.
-
-- [Resellme](https://resellme.co.zw).
+Resellme is a platform that allows resellers to start sellings hosting and domains in less than 5 minutes. For more information refer here: [Resellme](https://resellme.co.zw).
 
 This project is a billing system resellers can use.
 
 ## Resellme Billing System
 
-This is a free system anyone can download and customize for their preferences.
+This is a free system anyone can download and customize for their preferences. To install clone the master branch and update the `.env` with approprite details.
 
 ## TODO
 ### Create Blade Based Pages
 - Search Domain ( Public )
 - Register Domain ( Requires Auth )
 - Enter Contact Details ( Requires Auth )
-- Enter Name Details ( Requires Auth )
+- Enter Nameservers Details ( Requires Auth )
 
 ### Creating Controllers - Use the [PHP SDK](https://www.resellme.co.zw/docs/php-sdk)
 - DomainControllers ( Handles Domains Logic )
@@ -37,11 +35,13 @@ Thank you for considering contributing to this Project! Fork the develop branch 
 ## Testing
 To test your codes run the following command:
 
-`php artisan test`
+```shell
+php artisan test
+```
 
 ## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Just Be nice to others.
 
 ## Security Vulnerabilities
 
