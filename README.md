@@ -32,6 +32,8 @@ This is a free system anyone can download and customize for their preferences. T
 
 Thank you for considering contributing to this Project! Fork the develop branch and send in your pull request. Make sure tests are created and are passing.
 
+For more information on pending tasks and progress refer to : https://trello.com/invite/b/WTsj7p4p/150c40721bbe53186ccf7db2ee270163/resellme-billing-system
+
 ## Testing
 To test your codes run the following command:
 
