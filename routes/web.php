@@ -6,6 +6,7 @@ use App\Http\Controllers\SearchDomainController;
 use App\Http\Controllers\LoadFundsController;
 use App\Http\Controllers\NameserversController;
 use App\Http\Controllers\ContactsController;
+use App\Http\Controllers\UserDashboardController;
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -34,6 +35,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/user/dashboard', [UserDashboardController::class, 'index'])->name('user_dashboard');
 
-    // Load funds
-    Route::get('/load-funds', [LoadFundsController::class, 'load'])->name('user_dashboard');
+    // Order
+    Route::get('/order/complete', [CompleteOrderController::class, 'index'])->name('complete_order_view');
+    Route::post('/paynow/callback', PaynowCallbackController::class)->name('paynow_callback');
 });

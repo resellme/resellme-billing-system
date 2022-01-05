@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "61f383cfa3f8b5c9af7657e46c8632d5",
+    "content-hash": "ff46a34e95eefa0a25e5b78eb429d80f",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2688,6 +2688,47 @@
                 "source": "https://github.com/paragonie/constant_time_encoding"
             },
             "time": "2020-12-06T15:14:20+00:00"
+        },
+        {
+            "name": "paynow/php-sdk",
+            "version": "1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paynow/Paynow-PHP-SDK.git",
+                "reference": "b72ac71c899154fce8bbbe011c3367d8bd2f740e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paynow/Paynow-PHP-SDK/zipball/b72ac71c899154fce8bbbe011c3367d8bd2f740e",
+                "reference": "b72ac71c899154fce8bbbe011c3367d8bd2f740e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "7.1",
+                "victorjonsson/markdowndocs": "^1.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Paynow\\": "src/"
+                },
+                "files": [
+                    "src/helper.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "PHP SDK for the Paynow API",
+            "support": {
+                "issues": "https://github.com/paynow/Paynow-PHP-SDK/issues",
+                "source": "https://github.com/paynow/Paynow-PHP-SDK/tree/1.0.5"
+            },
+            "time": "2019-05-13T18:58:32+00:00"
         },
         {
             "name": "phpoption/phpoption",

@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class DomainSeederFactory extends Factory
+class OrderItemFactory extends Factory
 {
     /**
      * Define the model's default state.

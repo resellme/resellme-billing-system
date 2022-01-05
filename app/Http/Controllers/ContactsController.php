@@ -25,7 +25,7 @@ class ContactsController extends Controller
      */
     public function create()
     {
-        //
+        return view('domains.contacts.create');
     }
 
     /**

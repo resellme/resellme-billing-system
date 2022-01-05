@@ -25,7 +25,7 @@ class NameserversController extends Controller
      */
     public function create()
     {
-        //
+        return view('domains.nameservers.create');
     }
 
     /**

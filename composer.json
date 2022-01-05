@@ -13,6 +13,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.5",
+        "paynow/php-sdk": "^1.0",
         "privyreza/rm-php-sdk": "^1.5"
     },
     "require-dev": {
