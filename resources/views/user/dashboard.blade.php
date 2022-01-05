@@ -1,0 +1,1 @@
+user dashboard / Show domains, and other detals
