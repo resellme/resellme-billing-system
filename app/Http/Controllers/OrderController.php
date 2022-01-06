@@ -55,7 +55,7 @@ class OrderController extends Controller
         $payment = $paynow->createPayment($order->id, $user->email);
 
         foreach($orderItems as $item) {
-            $payment->add($item->description, $item->price);
+            $payment->add($item->description, $item->amount);
         }
 
 
@@ -63,7 +63,7 @@ class OrderController extends Controller
 
         if($response->success()) {
             // Store pollUrl for later checking
-            $order->poll_url = $response->pollUrl();
+            $order->paynow_poll_url = $response->pollUrl();
 
             // Redirect the user to Paynow
             $response->redirect();

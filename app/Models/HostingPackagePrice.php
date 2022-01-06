@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class HostingPackagePrice extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'hosting_package_id',
+        'amount'
+    ];
 }

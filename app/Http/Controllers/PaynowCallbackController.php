@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Order;
 
 class PaynowCallbackController extends Controller
 {
@@ -16,8 +17,8 @@ class PaynowCallbackController extends Controller
     {
         $status = $request->status;
         $pollUrl = $request->pollurl;
-        $ref = $request->reference;
-        $transactionId = explode('-', $request->reference)[1];
+        $orderId = $request->reference;
+        $order = Order::find($orderId);
         $paynowreference = $request->paynowreference;
         $newBalance = 0;
         $previousBalance = 0;
@@ -78,7 +79,7 @@ class PaynowCallbackController extends Controller
             logTransaction($transaction->id, $previousBalance, $newBalance);
 
             // Trigger Funds Loaded Event
-            event(new FundsLoaded($reseller));
+            event(new OrderCompleted($order));
 
         } else {
            \Log::error('Transaction failed ' . $transaction->id);
