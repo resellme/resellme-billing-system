@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreContactRequest;
 use App\Http\Requests\UpdateContactRequest;
 use App\Models\Contact;
+use App\Models\Domain;
 
 class ContactsController extends Controller
 {
@@ -23,9 +24,9 @@ class ContactsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Domain $domain)
     {
-        return view('domains.contacts.create');
+        return view('domains.contacts.create', compact('domain'));
     }
 
     /**
@@ -36,7 +37,10 @@ class ContactsController extends Controller
      */
     public function store(StoreContactRequest $request)
     {
-        //
+        $contacts = Contact::create($request->all());
+
+        // Proceed to payments
+        return redirect(route('create_order_page', [$contacts->domain]));
     }
 
     /**

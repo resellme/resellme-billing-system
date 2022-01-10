@@ -42,11 +42,12 @@ class DomainsController extends Controller
         $data = [
             'name' => $request->name,
             'registration_date' => Carbon::now()->format('Y-m-d'),
-            'expiration_date' => Carbon::now()->addYear()->format('Y-m-d'),
-            'status' => 'pending'
+            'expiration_date' => Carbon::now()->addYear()->format('Y-m-d')
         ];
 
-        Domain::create($data);
+        $domain = Domain::create($data);
+
+        return redirect(route ('create_nameservers_page', [$domain]));
     }
 
     /**

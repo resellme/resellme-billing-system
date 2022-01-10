@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDomainPricingsTable extends Migration
+class MakeNs3AndNs4NullableOnNameserversTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateDomainPricingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('domain_pricings', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('nameservers', function (Blueprint $table) {
+            $table->string('ns3')->nullable()->change();
+            $table->string('ns4')->nullable()->change();
         });
     }
 
@@ -26,6 +26,8 @@ class CreateDomainPricingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('domain_pricings');
+        Schema::table('nameservers', function (Blueprint $table) {
+            //
+        });
     }
 }

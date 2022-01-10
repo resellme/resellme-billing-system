@@ -15,6 +15,12 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->string('paynow_poll_url')->nullable();
+            $table->foreignId('user_id')
+                  ->constrained()
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade');
+            $table->enum('status', ['pending', 'complete', 'failed']);
             $table->timestamps();
         });
     }

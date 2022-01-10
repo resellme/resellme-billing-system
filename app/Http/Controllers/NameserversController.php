@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreNameserverRequest;
 use App\Http\Requests\UpdateNameserverRequest;
 use App\Models\Nameserver;
+use Illuminate\Http\Request;
+use App\Models\Domain;
 
 class NameserversController extends Controller
 {
@@ -23,9 +25,9 @@ class NameserversController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Domain $domain)
     {
-        return view('domains.nameservers.create');
+        return view('domains.nameservers.create', compact('domain'));
     }
 
     /**
@@ -36,7 +38,9 @@ class NameserversController extends Controller
      */
     public function store(StoreNameserverRequest $request)
     {
-        //
+        $nameservers = Nameserver::create($request->all());
+
+        return redirect(route('create_contacts_page', [$nameservers->domain]));
     }
 
     /**

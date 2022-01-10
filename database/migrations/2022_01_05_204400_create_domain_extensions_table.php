@@ -15,6 +15,7 @@ class CreateDomainExtensionsTable extends Migration
     {
         Schema::create('domain_extensions', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->timestamps();
         });
     }

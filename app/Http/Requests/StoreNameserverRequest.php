@@ -13,7 +13,7 @@ class StoreNameserverRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class StoreNameserverRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'ns1' => 'required',
+            'ns2' => 'required',
+            'domain_id' => ['required', 'unique:nameservers']
         ];
     }
 }

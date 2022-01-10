@@ -15,6 +15,11 @@ class CreateDomainExtensionPricesTable extends Migration
     {
         Schema::create('domain_extension_prices', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('domain_extension_id')
+                  ->constrained()
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade');
+            $table->double('amount');
             $table->timestamps();
         });
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Resellme\Client;
+use App\Http\Requests\DomainSearchRequest;
 
 class SearchDomainController extends Controller
 {
@@ -24,7 +25,10 @@ class SearchDomainController extends Controller
      * @return array $domainSearchResult
      *
      */
-    public function search(String $domain) {
+    public function search(DomainSearchRequest $request) {
+        $status = 'available';
+        $domain = $request->domain;
+
         // Get Token
         $token = env('RESELLME_TOKEN');
         
@@ -34,6 +38,12 @@ class SearchDomainController extends Controller
         // Search domain
         $domainSearch = $client->searchDomain($domain);
 
-        return $domainSearch;
+        if ($domainSearch->status == 'not_available') {
+            $status = 'not_available';
+        } else {
+            $status = 'available';
+        }
+
+        return view('search-domain-page', compact('status', 'domain'));
     } 
 }

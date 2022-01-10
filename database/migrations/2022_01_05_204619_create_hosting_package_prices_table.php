@@ -15,6 +15,11 @@ class CreateHostingPackagePricesTable extends Migration
     {
         Schema::create('hosting_package_prices', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('hosting_package_id')
+                  ->constrained()
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade');
+            $table->double('amount');
             $table->timestamps();
         });
     }

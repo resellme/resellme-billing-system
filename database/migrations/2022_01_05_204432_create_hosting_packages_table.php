@@ -15,6 +15,8 @@ class CreateHostingPackagesTable extends Migration
     {
         Schema::create('hosting_packages', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->text('features');
             $table->timestamps();
         });
     }
