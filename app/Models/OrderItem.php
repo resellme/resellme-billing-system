@@ -12,6 +12,7 @@ class OrderItem extends Model
     protected $fillable = [
         'order_id',
         'description',
-        'amount'
+        'amount',
+        'service_type',
     ];
 }
