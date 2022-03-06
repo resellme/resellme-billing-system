@@ -14,7 +14,8 @@ class AddServiceIdsToOrderItemssTable extends Migration
     public function up()
     {
         Schema::table('order_items', function (Blueprint $table) {
-            //
+            $table->integer('hosting_id')->nullable();
+            $table->integer('domain_id')->nullable();
         });
     }
 
