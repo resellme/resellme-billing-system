@@ -1,4 +1,6 @@
 <?php
+use Resellme\Client;
+
 function hasEnoughFunds() {
 	return true;
 }
