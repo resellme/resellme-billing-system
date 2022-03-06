@@ -12,9 +12,9 @@ use App\Http\Controllers\DomainsController;
 use App\Http\Controllers\CompleteOrderController;
 use App\Http\Controllers\OrderController;
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');
 
 
 /**
@@ -28,6 +28,9 @@ Route::get('/domains/search', [SearchDomainController::class, 'search'])->name('
 
 // Protected routes
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    // User Dashboard
+    Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
+
     // Contacts
     Route::get('/domains/{domain}/contacts', [ContactsController::class, 'create'])->name('create_contacts_page');
     Route::post('/contacts', [ContactsController::class, 'store'])->name('create_contacts');
@@ -40,10 +43,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/domains', [DomainsController::class, 'store'])->name('create_domain');
     Route::post('/domains/{domain}/register', RegisterDomainController::class)->name('register_domain');
 
-    Route::get('/user/dashboard', [UserDashboardController::class, 'index'])->name('user_dashboard');
-
     // Order
     Route::get('/domains/{domain}/order', [OrderController::class, 'create'])->name('create_order_page');
     Route::post('/orders', [OrderController::class, 'store'])->name('create_order');
     Route::post('/paynow/callback', PaynowCallbackController::class)->name('paynow_callback');
+    Route::get('/paynow/complete', CompleteOrderController::class)->name('paynow_complete_order');
 });

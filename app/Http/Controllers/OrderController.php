@@ -56,19 +56,19 @@ class OrderController extends Controller
         $orderItem = OrderItem::create([
             'order_id' => $order->id,
             'amount' => $price,
-            'description' => 'Domain: ' . $domain->name
-
+            'description' => 'Domain: ' . $domain->name,
+            'service_type' => 'domain_registration',
+            'domain_id' => $domain->id,
         ]);
 
         // Process payment
         $paynow = new Paynow(
             env('PAYNOW_INTEGRATION_ID'),
             env('PAYNOW_INTEGRATION_KEY'),
-            env('PAYNOW_RESULT_URL'),
-            env('PAYNOW_RETURN_URL')
+            env('PAYNOW_RETURN_URL'),
+            env('PAYNOW_RESULT_URL')
         );
 
-        dd($user->email);
         $payment = $paynow->createPayment($order->id, $user->email);
 
         // foreach($orderItems as $item) {

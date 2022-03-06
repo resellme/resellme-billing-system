@@ -29,11 +29,7 @@ class SearchDomainController extends Controller
         $status = 'available';
         $domain = $request->domain;
 
-        // Get Token
-        $token = env('RESELLME_TOKEN');
-        
-        // Create RM client
-        $client = new Client($token);
+        $client = rmClient();
 
         // Search domain
         $domainSearch = $client->searchDomain($domain);

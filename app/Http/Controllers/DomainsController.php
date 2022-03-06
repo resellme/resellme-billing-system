@@ -6,6 +6,7 @@ use App\Http\Requests\StoreDomainRequest;
 use App\Http\Requests\UpdateDomainRequest;
 use App\Models\Domain;
 use Carbon\Carbon;
+use Auth;
 
 class DomainsController extends Controller
 {
@@ -16,7 +17,10 @@ class DomainsController extends Controller
      */
     public function index()
     {
-        $domains = Domain::all();
+        $domains = Domain::where(
+            [
+                'user_id' => Auth::id(),
+            ])->get();
 
         return view('domains.index', compact('domains'));
     }
@@ -42,7 +46,8 @@ class DomainsController extends Controller
         $data = [
             'name' => $request->name,
             'registration_date' => Carbon::now()->format('Y-m-d'),
-            'expiration_date' => Carbon::now()->addYear()->format('Y-m-d')
+            'expiration_date' => Carbon::now()->addYear()->format('Y-m-d'),
+            'user_id' => Auth::id(),
         ];
 
         $domain = Domain::create($data);
