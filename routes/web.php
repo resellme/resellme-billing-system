@@ -47,5 +47,5 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/domains/{domain}/order', [OrderController::class, 'create'])->name('create_order_page');
     Route::post('/orders', [OrderController::class, 'store'])->name('create_order');
     Route::post('/paynow/callback', PaynowCallbackController::class)->name('paynow_callback');
-    Route::get('/paynow/complete', CompleteOrderController::class)->name('paynow_complete_order');
+    Route::get('/paynow/complete', [CompleteOrderController::class, 'complete'])->name('paynow_complete_order');
 });

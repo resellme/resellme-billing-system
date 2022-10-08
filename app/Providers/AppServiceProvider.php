@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use Modules\Hosting\Contracts\HostingInterface;
+use Modules\Hosting\ResellmeHosting;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(HostingInterface::class, ResellmeHosting::class);
     }
 
     /**
