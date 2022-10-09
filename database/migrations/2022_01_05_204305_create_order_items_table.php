@@ -15,6 +15,8 @@ class CreateOrderItemsTable extends Migration
     {
         Schema::create('order_items', function (Blueprint $table) {
             $table->id();
+            $table->enum('service_type', ['hosting', 'domain', 'vps', 'ssl']);
+            $table->unsignedBigInteger('record_id');
             $table->foreignId('order_id')
                   ->constrained()
                   ->onUpdate('cascade')
