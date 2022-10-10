@@ -11,6 +11,8 @@ use App\Http\Controllers\PaynowCallbackController;
 use App\Http\Controllers\DomainsController;
 use App\Http\Controllers\CompleteOrderController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\HostingController;
+use App\Http\Controllers\Orders\CheckoutController;
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');
@@ -40,12 +42,15 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('nameservers', [NameserversController::class, 'store'])->name('create_nameservers');
 
     // Domains
-    Route::post('/domains', [DomainsController::class, 'store'])->name('create_domain');
-    Route::post('/domains/{domain}/register', RegisterDomainController::class)->name('register_domain');
+    Route::resource('domains', DomainsController::class);
+    Route::post('/domains/{domain}/register', RegisterDomainController::class)->name('domains.register');
+
+    // Hosting
+    Route::resource('hostings', HostingController::class);
 
     // Order
-    Route::get('/domains/{domain}/order', [OrderController::class, 'create'])->name('create_order_page');
-    Route::post('/orders', [OrderController::class, 'store'])->name('create_order');
+    Route::resource('orders', OrderController::class);
+    Route::post('orders/{order}/checkout', CheckoutController::class)->name('orders.checkout');
     Route::post('/paynow/callback', PaynowCallbackController::class)->name('paynow_callback');
     Route::get('/paynow/complete', [CompleteOrderController::class, 'complete'])->name('paynow_complete_order');
 });

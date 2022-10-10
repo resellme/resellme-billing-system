@@ -10,6 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Domain;
+use App\Models\Hosting;
 
 class User extends Authenticatable
 {
@@ -63,10 +64,20 @@ class User extends Authenticatable
     /**
      * Get User Domains
      * 
-     * return HasMany
+     * @return HasMany
      */
     public function domains()
     {
         return $this->hasMany(Domain::class);
+    }
+
+    /**
+     * Get all hosting for the user
+     * 
+     * @return HasMany
+     */
+    public function hosting()
+    {
+        return $this->hasMany(Hosting::class);
     }
 }

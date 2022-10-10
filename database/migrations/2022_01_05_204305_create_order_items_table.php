@@ -21,7 +21,7 @@ class CreateOrderItemsTable extends Migration
                   ->constrained()
                   ->onUpdate('cascade')
                   ->onDelete('cascade');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->double('amount');
             $table->timestamps();
         });

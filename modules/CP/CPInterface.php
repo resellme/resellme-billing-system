@@ -1,8 +1,10 @@
 <?php
 
-namespace Modules\Hosting\Contracts;
+namespace Modules\CP;
 
-interface HostingInterface
+use App\Models\Hosting;
+
+interface CPInterface
 {
     /**
      * Creates hosting account.
@@ -10,5 +12,5 @@ interface HostingInterface
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function create($domain, $package);
+    public function create(Hosting $hosting);
 }
