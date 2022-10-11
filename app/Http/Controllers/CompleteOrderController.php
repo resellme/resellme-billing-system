@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Modules\CP\CPInterface;
-use Modules\DomainRegistra\DomainRegistrarInterface;
+use Modules\DomainRegistrar\DomainRegistrarInterface;
 use App\Models\Domain;
 use App\Models\Hosting;
+use App\Models\Order;
 
 class CompleteOrderController extends Controller
 {
@@ -20,17 +21,15 @@ class CompleteOrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function __construct(
-        HostingInterface $cp, 
-        DomainRegistrarInterface $domainRegistrar,
-        PaymentGatewayInterface $paymentGateway
+        CPInterface $cp, 
+        DomainRegistrarInterface $domainRegistrar
     )
     {
         $this->cp = $cp;
         $this->domainRegistrar = $domainRegistrar;
     }
 
-    public function complete(Request $request)
-    {
+    public function callback(Request $request) {
         // Verify payment using the poll url
         // Provision services
         // and show appropriate page
@@ -40,6 +39,8 @@ class CompleteOrderController extends Controller
         $status = $request->status;
         $pollUrl = $request->pollurl;
         $paynowreference = $request->paynowreference;
+
+        dd($status);
 
         if ($status == 'Paid' || $status == 'Awaiting Delivery' || $status == 'Delivered') {
             // Update transation status
@@ -59,5 +60,10 @@ class CompleteOrderController extends Controller
         
             return view('orders.complete');
         }
+    }
+
+    public function complete(Order $order)
+    {
+        return view('orders.complete');
     }
 }

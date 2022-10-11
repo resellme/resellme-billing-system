@@ -1,13 +1,13 @@
 <?php
 
-namespace Modules\Hosting;
+namespace Modules\CP\CWP;
 
-use Modules\Hosting\Contracts\HostingInterface;
+use Modules\CP\CPInterface;
 use Illuminate\Support\Str;
 use App\Models\Hosting;
 use Illuminate\Support\Facades\Crypt;
 
-class CWP implements HostingInterface
+class CWPCP implements CPInterface
 {
     /**
      * Create a hosting account.

@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Domains;
+namespace Modules\DomainRegistrar;
 
 use App\Models\Domain;
 
@@ -12,7 +12,7 @@ interface DomainRegistrarInterface
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function register(Domain $domain, string $package);
+    public function register(Domain $domain);
 
-    public function transfer(string $domain, string $package);
+    public function transfer(Domain $domain);
 }

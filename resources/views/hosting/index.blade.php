@@ -15,7 +15,7 @@
                         <tr>
                             <th>Domain Name</th>
                             <th>Status</th>
-                            <th>Registration Date</th>
+                            <th>Next Due Date</th>
                             <th>Billing Cycle</th>
                         </tr>
                     </thead>

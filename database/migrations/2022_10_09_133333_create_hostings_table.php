@@ -26,6 +26,7 @@ class CreateHostingsTable extends Migration
             ->references('id')
             ->on('users')
             ->onDelete('cascade');
+            $table->enum('status', ['pending', 'active', 'suspended', 'terminated'])->default('pending');
             $table->timestamps();
         });
     }

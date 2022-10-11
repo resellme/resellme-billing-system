@@ -1,11 +1,12 @@
 <?php
 
-namespace Modules\Domains\Resellme;
+namespace Modules\DomainRegistrar\Resellme;
 
 use Resellme\Client;
 use App\Models\Domain;
+use Modules\DomainRegistrar\DomainRegistrarInterface;
 
-class ResellmeRegistrar
+class ResellmeRegistrar implements DomainRegistrarInterface
 {
     /**
      * Registers a domain
@@ -47,7 +48,7 @@ class ResellmeRegistrar
         $domain = $client->registerDomain($data);
     }
 
-    public function transfer(string $domain, string $package) {
+    public function transfer(Domain $domain) {
         // Get token from env
         $token = getenv('RM_TOKEN');
 
