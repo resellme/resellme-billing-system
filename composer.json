@@ -15,7 +15,7 @@
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.5",
         "paynow/php-sdk": "^1.0",
-        "privyreza/rm-php-sdk": "^2.0"
+        "privyreza/rm-php-sdk": "^3.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

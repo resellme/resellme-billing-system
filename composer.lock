@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7cb07769aebcf3db149b5441c2bca7b5",
+    "content-hash": "90ae82cd3f80f11af25bbbe26af289c4",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3275,21 +3275,21 @@
         },
         {
             "name": "privyreza/rm-php-sdk",
-            "version": "2.0.1",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/privyreza/rm-php-sdk.git",
-                "reference": "1bfad2543022d50807e5a4d9b48c8c537fda7da6"
+                "reference": "edd3e26152301006300ec3055bcbb287e5fce495"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/privyreza/rm-php-sdk/zipball/1bfad2543022d50807e5a4d9b48c8c537fda7da6",
-                "reference": "1bfad2543022d50807e5a4d9b48c8c537fda7da6",
+                "url": "https://api.github.com/repos/privyreza/rm-php-sdk/zipball/edd3e26152301006300ec3055bcbb287e5fce495",
+                "reference": "edd3e26152301006300ec3055bcbb287e5fce495",
                 "shasum": ""
             },
             "require": {
                 "guzzlehttp/guzzle": "^7.0",
-                "php": "^7.2"
+                "php": "^8.0"
             },
             "type": "library",
             "autoload": {
@@ -3304,9 +3304,9 @@
             "description": "Resell Domains and Hosting",
             "support": {
                 "issues": "https://github.com/privyreza/rm-php-sdk/issues",
-                "source": "https://github.com/privyreza/rm-php-sdk/tree/2.0.1"
+                "source": "https://github.com/privyreza/rm-php-sdk/tree/3.0.0"
             },
-            "time": "2022-01-06T20:36:57+00:00"
+            "time": "2022-10-09T20:30:14+00:00"
         },
         {
             "name": "psr/cache",
@@ -9067,5 +9067,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.3.0"
 }
