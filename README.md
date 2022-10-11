@@ -15,7 +15,13 @@ This project is a billing system resellers can use.
 
 ## Resellme Billing System
 
-This is a free system anyone can download and customize for their preferences. To install clone the master branch and update the `.env` with approprite details.
+This is a free system anyone can download and customize for their preferences. 
+
+## Installation 
+1. Clone the master branch and update the `.env` with approprite details.
+
+2. Change Directory to the cloned folder then rin this: `php artisan storage:link
+`
 
 ## TODO
 ### Create Blade Based Pages

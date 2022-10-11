@@ -20,7 +20,7 @@ class CreateOrdersTable extends Migration
                   ->constrained()
                   ->onUpdate('cascade')
                   ->onDelete('cascade');
-            $table->enum('status', ['pending', 'complete', 'failed']);
+            $table->enum('status', ['pending', 'completed', 'failed']);
             $table->timestamps();
         });
     }

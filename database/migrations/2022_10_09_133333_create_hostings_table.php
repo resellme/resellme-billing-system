@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDomainsTable extends Migration
+class CreateHostingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,20 @@ class CreateDomainsTable extends Migration
      */
     public function up()
     {
-        Schema::create('domains', function (Blueprint $table) {
+        Schema::create('hostings', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('domain');
+            $table->string('billing_cycle');
+            $table->date('next_due_date')->nullable();
+            $table->string('username')->nullable();
+            $table->text('password')->nullable();
+            $table->string('package');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')
             ->references('id')
             ->on('users')
             ->onDelete('cascade');
-            $table->enum('status', ['registered', 'pending_registration', 'pending_processing']);
-            $table->date('registration_date')->nullable();
-            $table->date('expiration_date')->nullable();
+            $table->enum('status', ['pending', 'active', 'suspended', 'terminated'])->default('pending');
             $table->timestamps();
         });
     }
@@ -35,6 +38,6 @@ class CreateDomainsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('domains');
+        Schema::dropIfExists('hostings');
     }
 }

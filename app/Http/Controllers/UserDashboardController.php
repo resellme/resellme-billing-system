@@ -9,10 +9,8 @@ use App\Models\Domain;
 class UserDashboardController extends Controller
 {
     public function index() {
-        $domains = Domain::where([
-            'user_id' => Auth::id(),
-        ])->get();
+        $user = \Auth::user();
 
-        return view('user.dashboard', compact('domains'));
+        return view('user.dashboard', compact('user'));
     }
 }

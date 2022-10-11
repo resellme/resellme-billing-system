@@ -30,7 +30,7 @@ class OrderController extends Controller
     public function create(Domain $domain)
     {
         $price = env('DOMAIN_PRICE');
-        return view('complete-order', compact('domain', 'price'));
+        return view('orders.create', compact('domain', 'price'));
     }
 
     /**
@@ -53,13 +53,17 @@ class OrderController extends Controller
         $order = Order::create($orderData);
 
         // Order Items
-        $orderItem = OrderItem::create([
-            'order_id' => $order->id,
-            'amount' => $price,
-            'description' => 'Domain: ' . $domain->name,
-            'service_type' => 'domain_registration',
-            'domain_id' => $domain->id,
-        ]);
+        $items = $request->items;
+
+        foreach ($items as $key => $item) {
+            OrderItem::create([
+                'order_id' => $order->id,
+                'amount' => $price,
+                'description' => 'Domain: ' . $domain->name,
+                'service_type' => 'domain_registration',
+                'domain_id' => $domain->id,
+            ]);   
+        }
 
         // Process payment
         $paynow = new Paynow(
@@ -98,7 +102,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return view('orders.show', compact('order'));
     }
 
     /**

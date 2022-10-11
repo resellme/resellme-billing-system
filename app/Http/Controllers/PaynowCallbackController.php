@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Events\OrderCompleted;
 
 class PaynowCallbackController extends Controller
 {
@@ -21,18 +22,16 @@ class PaynowCallbackController extends Controller
         $order = Order::find($orderId);
         $paynowreference = $request->paynowreference;
 
-        // $status = $this->paynow->pollTransaction($pollUrl);
-
         if ($status == 'Paid' || $status == 'Awaiting Delivery' || $status == 'Delivered') {
             // Update transation status
-            $order->status = 'paid';
+            $order->status = 'completed';
             $order->save();
 
             // Trigger Funds Loaded Event
             event(new OrderCompleted($order));
 
         } else {
-           \Log::error('Transaction failed ' . $transaction->id);
+           \Log::error('Transaction failed ' . $order->id);
         }
     }
 }
