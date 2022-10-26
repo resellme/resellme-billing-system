@@ -40,7 +40,7 @@ class ContactsController extends Controller
         $contacts = Contact::create($request->all());
 
         // Proceed to payments
-        return redirect(route('create_order_page', [$contacts->domain]));
+        return redirect(route('orders.create', [$contacts->domain]));
     }
 
     /**

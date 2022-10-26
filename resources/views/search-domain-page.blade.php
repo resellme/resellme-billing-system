@@ -23,7 +23,7 @@
             </div>
              @if (isset($domain))
             <div class="w-full sm:max-w-2xl mt-6 p-6 bg-white shadow-md overflow-hidden sm:rounded-lg prose">
-                <form method="POST" action="{{ route('create_domain') }}">
+                <form method="POST" action="{{ route('domains.store') }}">
                     @csrf
                     <input type="hidden" name="name" value="{{ $domain }}">
                     <p>
