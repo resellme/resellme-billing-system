@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Order;
 
 class OrderItem extends Model
 {
@@ -13,7 +14,15 @@ class OrderItem extends Model
         'order_id',
         'description',
         'amount',
-        'service_type',
-        'record_id',
+        'itemable_type',
+        'itemable_id',
     ];
+
+    public function itemable() {
+        return $this->morphTo();
+    }
+
+    public function order() {
+        return $this->belongsTo(Order::class);
+    }
 }

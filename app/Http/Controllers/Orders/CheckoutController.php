@@ -27,7 +27,7 @@ class CheckoutController extends Controller
         $payment = $paynow->createPayment($order->id, $order->user->email);
 
         foreach($order->orderItems as $item) {
-            $payment->add($item->service_type, $item->amount);
+            $payment->add($item->id, $item->amount);
         }
 
         $response = $paynow->send($payment);

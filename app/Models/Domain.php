@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Nameserver;
 use App\Models\Contact;
 use App\Models\User;
+use App\Models\OrderItem;
 
 class Domain extends Model
 {
@@ -58,5 +59,9 @@ class Domain extends Model
      */
     public function user() {
         return $this->belongsTo(User::class);
+    }
+
+    public function orderItem() {
+        return $this->morphOne(OrderItem::class, 'itemable');
     }
 }

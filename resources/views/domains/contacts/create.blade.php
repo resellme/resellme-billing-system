@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
             	<div class="w-full sm:max-w-2xl mt-6 p-6 bg-white shadow-md overflow-hidden sm:rounded-lg prose">
             	<x-jet-validation-errors class="mb-4" />
-                <form method="POST" action="{{ route('create_contacts') }}">
+                <form method="POST" action="{{ route('contacts.store') }}">
 		            @csrf
 		            <input type="hidden" name="domain_id" value="{{ $domain->id }}">
 		            <div class="mt-4">

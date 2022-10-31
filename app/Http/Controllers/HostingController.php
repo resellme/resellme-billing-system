@@ -65,20 +65,20 @@ class HostingController extends Controller
         $orderItems = OrderItem::insert([
             [
                 'order_id' => $order->id,
-                'service_type' => 'hosting',
-                'record_id' => $hosting->id,
+                'itemable_type' => Hosting::class,
+                'itemable_id' => $hosting->id,
                 'amount' => 0
             ],
             [
                 'order_id' => $order->id,
-                'service_type' => 'domain',
-                'record_id' => $domain->id,
+                'itemable_type' => Domain::class,
+                'itemable_id' => $domain->id,
                 'amount' => $domainPrice,
             ]
         ]);
 
-        // Redirect to order summary
-        return redirect(route('orders.show', $order));
+        // Redirect to Domain Config Page
+        return redirect(route('domains.configure', $domain));
     }
 
     /**

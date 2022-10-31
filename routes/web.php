@@ -12,6 +12,7 @@ use App\Http\Controllers\DomainsController;
 use App\Http\Controllers\CompleteOrderController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\HostingController;
+use App\Http\Controllers\ConfigureDomainController;
 use App\Http\Controllers\Orders\CheckoutController;
 
 // Protected routes
@@ -28,7 +29,7 @@ Route::middleware(['auth:sanctum', 'verified'])
 
     // Contacts
     Route::get('/domains/{domain}/contacts', [ContactsController::class, 'create'])->name('create_contacts_page');
-    Route::post('/contacts', [ContactsController::class, 'store'])->name('create_contacts');
+    Route::post('/contacts', [ContactsController::class, 'store'])->name('contacts.store');
 
     // Nameservers for domain
     Route::get('/domains/{domain}/nameservers', [NameserversController::class, 'create'])->name('create_nameservers_page');
@@ -37,6 +38,7 @@ Route::middleware(['auth:sanctum', 'verified'])
     // Domains
     Route::resource('domains', DomainsController::class);
     Route::post('/domains/{domain}/register', RegisterDomainController::class)->name('domains.register');
+    Route::get('/domains/{domain}/configure', [ConfigureDomainController::class, 'contact'])->name('domains.configure');
 
     // Hosting
     Route::resource('hostings', HostingController::class);

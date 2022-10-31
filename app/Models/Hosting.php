@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\OrderItem;
 
 class Hosting extends Model
 {
@@ -30,5 +31,9 @@ class Hosting extends Model
 
     public function user() {
         return $this->belongsTo(User::class);
+    }
+
+    public function orderItem() {
+        return $this->morphOne(OrderItem::class, 'itemable');
     }
 }

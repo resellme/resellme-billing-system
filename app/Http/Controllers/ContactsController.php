@@ -39,8 +39,13 @@ class ContactsController extends Controller
     {
         $contacts = Contact::create($request->all());
 
-        // Proceed to payments
-        return redirect(route('orders.create', [$contacts->domain]));
+        // Get order ID from Domain
+        $domain = Domain::find($request->domain_id);
+
+        $order = $domain->orderItem->order;
+
+        // Redirect to order summary
+        return redirect(route('orders.show', $order));
     }
 
     /**
