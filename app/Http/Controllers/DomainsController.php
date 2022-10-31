@@ -7,6 +7,8 @@ use App\Http\Requests\UpdateDomainRequest;
 use App\Models\Domain;
 use Carbon\Carbon;
 use Auth;
+use App\Models\Order;
+use App\Models\OrderItem;
 
 class DomainsController extends Controller
 {
@@ -52,7 +54,18 @@ class DomainsController extends Controller
 
         $domain = Domain::create($data);
 
-        return redirect(route ('create_nameservers_page', [$domain]));
+        // Create order and items
+        $order = Order::create(['user_id' => \Auth::id()]);
+        $price = env('DOMAIN_PRICE');
+
+        $orderItem = OrderItem::create([
+            'order_id' => $order->id,
+            'itemable_type' => Domain::class,
+            'itemable_id' => $domain->id,
+            'amount' => $price
+        ]);
+
+        return redirect(route ('nameservers.create', [$domain]));
     }
 
     /**

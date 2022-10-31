@@ -32,7 +32,7 @@ Route::middleware(['auth:sanctum', 'verified'])
     Route::post('/contacts', [ContactsController::class, 'store'])->name('contacts.store');
 
     // Nameservers for domain
-    Route::get('/domains/{domain}/nameservers', [NameserversController::class, 'create'])->name('create_nameservers_page');
+    Route::get('/domains/{domain}/nameservers', [NameserversController::class, 'create'])->name('nameservers.create');
     Route::post('nameservers', [NameserversController::class, 'store'])->name('create_nameservers');
 
     // Domains
