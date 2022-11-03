@@ -7,6 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use App\Notifications\UserCreatedAdminNotication;
 use Illuminate\Support\Facades\Notification;
+use App\Models\User;
 
 class SendUserCreatedNotificationToAdmin
 {
