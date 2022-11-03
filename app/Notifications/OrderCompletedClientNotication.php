@@ -6,19 +6,22 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use App\Models\Order;
 
-class AdminNewOrderNotification extends Notification
+class OrderCompletedClientNotication extends Notification
 {
     use Queueable;
+
+    public $order;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Order $order)
     {
-        //
+        $this->order = $order;
     }
 
     /**
@@ -40,10 +43,16 @@ class AdminNewOrderNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+        $message = (new MailMessage)
+                    ->subject('New Order')
+                    ->line('New Order Completed.')
+                    ->line('Order Details.');
+
+        foreach ($this->order->orderItems as $key => $item) {
+            $message->line($item->description . ': ' . $item->amount);
+        }
+
+        return $message;
     }
 
     /**

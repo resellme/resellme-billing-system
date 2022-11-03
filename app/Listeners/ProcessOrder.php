@@ -40,11 +40,11 @@ class ProcessOrder
         $orderItems = $order->orderItems;
 
         foreach ($orderItems as $key => $orderItem) {
-            if ($orderItem->service_type == 'hosting') {
-                $hosting = Hosting::find($orderItem->record_id);
+            if ($orderItem->itemable_type == Hosting::class) {
+                $hosting = Hosting::find($orderItem->itemable_id);
                 $this->cp->create($hosting);
-            } elseif ($orderItem->service_type == 'domain') {
-                $domain = Domain::find($orderItem->record_id);
+            } elseif ($orderItem->itemable_type == Domain::class) {
+                $domain = Domain::find($orderItem->itemable_id);
                 $this->domainRegistrar->register($domain);
             }
         }

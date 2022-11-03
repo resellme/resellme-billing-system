@@ -8,6 +8,9 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 use Illuminate\Support\Facades\Event;
 use App\Events\OrderCompleted;
 use App\Listeners\ProcessOrder;
+use App\Listeners\SendOrderCompletedNotificationToClient;
+use App\Listeners\SendOrderCompletedNotificationToAdmin;
+use App\Listeners\SendUserCreatedNotificationToAdmin;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -19,9 +22,12 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+            SendUserCreatedNotificationToAdmin::class,
         ],
         OrderCompleted::class => [
             ProcessOrder::class,
+            SendOrderCompletedNotificationToAdmin::class,
+            SendOrderCompletedNotificationToClient::class,
         ],
     ];
 
