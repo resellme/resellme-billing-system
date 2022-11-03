@@ -31,4 +31,6 @@ class SendOrderCompletedNotificationToClient
 
         $order->user->notify(new OrderCompletedClientNotification($order));
     }
+
+    public $delay = 5;
 }

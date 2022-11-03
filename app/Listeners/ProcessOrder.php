@@ -51,7 +51,7 @@ class ProcessOrder
     }
 
     // Delay for 10 Seconds
-    public $delay = 5;
+    public $delay = 10;
     public $cp;
     public $domainRegistrar;
 }
