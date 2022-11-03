@@ -52,7 +52,7 @@ class CWPCP implements CPInterface
         $response = json_decode($response);
 
         if ($response->status == 'Error') {
-            throw new Exception($response->msj, 1);
+            throw new \Exception($response->msj, 1);
         }
 
         return true;
