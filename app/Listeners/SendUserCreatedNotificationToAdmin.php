@@ -5,7 +5,7 @@ namespace App\Listeners;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
-use App\Notifications\UserCreatedAdminNotication;
+use App\Notifications\UserCreatedAdminNotification;
 use Illuminate\Support\Facades\Notification;
 use App\Models\User;
 
@@ -35,7 +35,7 @@ class SendUserCreatedNotificationToAdmin
             'user_type' => 'admin'
         ])->get();
 
-        Notification::send($admins, new UserCreatedAdminNotication($user));
+        Notification::send($admins, new UserCreatedAdminNotification($user));
     }
 
     public $delay = 20;
