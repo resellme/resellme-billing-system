@@ -22,7 +22,7 @@ class ResellmeRegistrar implements DomainRegistrarInterface
         $client = new Client($token);
 
         // Domain Owner
-        $contact = [
+        $contacts = [
             "contacts" => [
                 "registrant" => $domain->contact->toArray()
             ]
