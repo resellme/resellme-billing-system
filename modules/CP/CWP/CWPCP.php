@@ -28,7 +28,7 @@ class CWPCP implements CPInterface
         $data = [
             "key"=> $key,
             "action" =>"add", 
-            "domain" => 'instantlyagelessaustralia.net', 
+            "domain" => $hosting->domain, 
             "user" => $username,
             "pass" => $password, 
             "email" => $hosting->user->email,
@@ -52,6 +52,7 @@ class CWPCP implements CPInterface
         $response = json_decode($response);
 
         if ($response->status == 'Error') {
+            \Log::error('Error Creating Hosting Account for ' . $hosting->domain . ' => ' . $response->msj);
             throw new \Exception($response->msj, 1);
         }
 
