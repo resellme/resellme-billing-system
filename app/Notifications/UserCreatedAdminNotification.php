@@ -47,8 +47,8 @@ class UserCreatedAdminNotification extends Notification
                     ->subject('New User Registration')
                     ->line('New User Created.')
                     ->line('Details.')
-                    ->line('Client: ' . $user->name)
-                    ->line('Email: ' . $user->email);
+                    ->line('Client: ' . $this->user->name)
+                    ->line('Email: ' . $this->user->email);
 
         return $message;
     }
