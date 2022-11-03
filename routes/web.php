@@ -19,7 +19,11 @@ use App\Http\Controllers\Orders\CheckoutController;
 Route::middleware(['auth:sanctum', 'verified'])
 ->group(function () {
     // Home page / search page
-    Route::get('/', [SearchDomainController::class, 'index'])->name('search_domain_page');
+    // Route::get('/', [SearchDomainController::class, 'index'])->name('search_domain_page');
+
+    Route::get('/', function() {
+        return redirect(route('hostings.create'));
+    })->name('search_domain_page');
 
     // Search domain
     Route::get('/domains/search', [SearchDomainController::class, 'search'])->name('search_domain');
