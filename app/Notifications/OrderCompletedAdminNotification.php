@@ -6,9 +6,9 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Ap\Models\Order;
+use App\Models\Order;
 
-class OrderCompletedAdminNotication extends Notification
+class OrderCompletedAdminNotification extends Notification
 {
     use Queueable;
 

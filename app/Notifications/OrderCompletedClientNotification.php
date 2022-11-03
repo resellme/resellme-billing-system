@@ -8,7 +8,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use App\Models\Order;
 
-class OrderCompletedClientNotication extends Notification
+class OrderCompletedClientNotification extends Notification
 {
     use Queueable;
 

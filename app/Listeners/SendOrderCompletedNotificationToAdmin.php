@@ -7,8 +7,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use App\Models\User;
 use Illuminate\Support\Facades\Notification;
+use App\Notifications\OrderCompletedAdminNotification;
 
-class SendOrderCompletedNotificationToAdmin
+class SendOrderCompletedNotificationToAdmin implements ShouldQueue
 {
     /**
      * Create the event listener.
@@ -35,7 +36,7 @@ class SendOrderCompletedNotificationToAdmin
             'user_type' => 'admin'
         ])->get();
 
-        Notification::send($admins, new OrderCompletedAdminNotication($order));
+        Notification::send($admins, new OrderCompletedAdminNotification($order));
     }
 
     public $delay = 10;

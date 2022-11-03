@@ -9,7 +9,7 @@ use App\Notifications\UserCreatedAdminNotification;
 use Illuminate\Support\Facades\Notification;
 use App\Models\User;
 
-class SendUserCreatedNotificationToAdmin
+class SendUserCreatedNotificationToAdmin implements ShouldQueue
 {
     /**
      * Create the event listener.

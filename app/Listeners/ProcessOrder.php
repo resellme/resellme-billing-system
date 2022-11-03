@@ -10,7 +10,7 @@ use Modules\DomainRegistrar\DomainRegistrarInterface;
 use App\Models\Domain;
 use App\Models\Hosting;
 
-class ProcessOrder
+class ProcessOrder implements ShouldQueue
 {
     /**
      * Create the event listener.
