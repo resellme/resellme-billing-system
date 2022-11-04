@@ -50,7 +50,7 @@ class OrderCompletedAdminNotification extends Notification
                     ->line('Client: ' . $this->order->user->name);
 
         foreach ($this->order->orderItems as $key => $item) {
-            $message->line($item->description . ': ' . $item->amount);
+            $message->line($item->description . ': $ ' . $item->amount . ' RTGS');
         }
 
         return $message;
