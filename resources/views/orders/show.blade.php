@@ -16,7 +16,7 @@
                 	</tr>
                     @foreach($order->orderItems as $orderItem)
                 	<tr>
-                		<td>1 x {{ $orderItem->service_type }}  </td>
+                		<td>1 x {{ $orderItem->description }} :  </td>
                 		<td>{{ $orderItem->amount }} </td>
                 	</tr>
                     @endforeach
