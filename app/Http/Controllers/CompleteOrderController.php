@@ -65,6 +65,7 @@ class CompleteOrderController extends Controller
 
     public function complete(Order $order)
     {
+        $order = Order::orderBy('id', 'DESC')->first();
         $order->status = 'completed';
         $order->save();
 
