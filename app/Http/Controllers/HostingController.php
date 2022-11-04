@@ -65,12 +65,14 @@ class HostingController extends Controller
         $orderItems = OrderItem::insert([
             [
                 'order_id' => $order->id,
+                'description' => 'Free Website Hosting: ' . $hosting->domain,
                 'itemable_type' => Hosting::class,
                 'itemable_id' => $hosting->id,
                 'amount' => 0
             ],
             [
                 'order_id' => $order->id,
+                'description' => 'Domain Registration: ' . $hosting->domain,
                 'itemable_type' => Domain::class,
                 'itemable_id' => $domain->id,
                 'amount' => $domainPrice,
