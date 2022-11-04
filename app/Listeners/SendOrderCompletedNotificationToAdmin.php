@@ -31,6 +31,8 @@ class SendOrderCompletedNotificationToAdmin implements ShouldQueue
     {
         $order = $event->order;
 
+        \Log::info('Sending Admin Notification to order: ' . $order->id);
+
         // Send Email to Admin
         $admins = User::where([
             'user_type' => 'admin'

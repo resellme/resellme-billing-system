@@ -34,8 +34,9 @@ class ProcessOrder implements ShouldQueue
      */
     public function handle(OrderCompleted $event)
     {
-        $client = rmClient();
         $order = $event->order;
+        \Log::info('Processing Order: ' . $order->id);
+        $client = rmClient();
 
         $orderItems = $order->orderItems;
 

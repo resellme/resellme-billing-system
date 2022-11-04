@@ -29,6 +29,8 @@ class SendOrderCompletedNotificationToClient implements ShouldQueue
     {
         $order = $event->order;
 
+        \Log::info('Sending Order Notification to Client. Order: ' . $order->id);
+
         $order->user->notify(new OrderCompletedClientNotification($order));
     }
 
