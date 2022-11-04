@@ -16,6 +16,7 @@ class PaynowCallbackController extends Controller
      */
     public function __invoke(Request $request)
     {
+        \Log::info('Callback from Paynow');
         $status = $request->status;
         $pollUrl = $request->pollurl;
         $orderId = $request->reference;

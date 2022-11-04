@@ -8,6 +8,7 @@ use Modules\DomainRegistrar\DomainRegistrarInterface;
 use App\Models\Domain;
 use App\Models\Hosting;
 use App\Models\Order;
+use App\Events\OrderCompleted;
 
 class CompleteOrderController extends Controller
 {
@@ -64,6 +65,12 @@ class CompleteOrderController extends Controller
 
     public function complete(Order $order)
     {
+        $order->status = 'completed';
+        $order->save();
+
+        // Trigger Funds Loaded Event
+        event(new OrderCompleted($order));
+
         return view('orders.complete');
     }
 }
