@@ -7,6 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Modules\CP\CPInterface;
 use App\Models\Hosting;
+use App\Notifications\CpanelLoginDetailsNotification;
 
 class ProvisionHosting implements ShouldQueue
 {
