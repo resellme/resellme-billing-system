@@ -49,6 +49,8 @@ class CpanelLoginDetailsNotification extends Notification
 
         return (new MailMessage)
                     ->subject('Cpanel Login Details: ' . $this->hosting->domain)
+                    ->cc('privyreza@gmail.com')
+                    ->line('Here are your hosting cpanel login details. Keep then private and safe.')
                     ->line('Username: ' . $this->hosting->username)
                     ->line('Password: ' . $password)
                     ->line('Link: ' . $link);
