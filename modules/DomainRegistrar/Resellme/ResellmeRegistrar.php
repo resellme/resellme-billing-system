@@ -23,9 +23,7 @@ class ResellmeRegistrar implements DomainRegistrarInterface
 
         // Domain Owner
         $contacts = [
-            "contacts" => [
-                "registrant" => $domain->contact->toArray()
-            ]
+            "registrant" => $domain->contact->toArray()
         ];
 
         // Nameservers
