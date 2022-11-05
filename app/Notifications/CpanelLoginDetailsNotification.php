@@ -7,6 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Crypt;
+use App\Models\Hosting;
 
 class CpanelLoginDetailsNotification extends Notification
 {
@@ -45,7 +46,7 @@ class CpanelLoginDetailsNotification extends Notification
     {
         $password = Crypt::decryptString($this->hosting->password);
         $link = 'https://alpha.freehosting.co.zw:2083';
-        
+
         return (new MailMessage)
                     ->subject('Cpanel Login Details: ' . $this->hosting->domain)
                     ->line('Username: ' . $this->hosting->username)
