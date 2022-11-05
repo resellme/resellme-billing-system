@@ -43,12 +43,12 @@ class ResellmeRegistrar implements DomainRegistrarInterface
             'contacts' => $contacts
         ]; 
 
-        $domainSearch = $client->searchDomain($domain->name);
+        // $domainSearch = $client->searchDomain($domain->name);
 
-        if ($domainSearch->status == 'not_available') {
-            throw new Exception("Domain is already register. Try transfering it if its yours. Domain: " . $domain->name, 1);
+        // if ($domainSearch->status == 'not_available') {
+        //     throw new Exception("Domain is already register. Try transfering it if its yours. Domain: " . $domain->name, 1);
             
-        }
+        // }
 
         $domain = $client->registerDomain($data);
     }
