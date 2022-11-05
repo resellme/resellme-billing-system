@@ -42,6 +42,9 @@ class ProvisionHosting implements ShouldQueue
         if($hosting->status !== 'active' && $this->cp->create($hosting)) {
             $hosting->status = 'active';
             $hosting->save();
+
+            // Send Cpanel Details
+            $hosting->user->notify(new CpanelLoginDetailsNotification($hosting));
         } else {
             \Log::error('Failed to create hosting for ' . $hosting->domain . ' because it already exist.');
         }

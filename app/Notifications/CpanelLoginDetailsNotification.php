@@ -6,19 +6,22 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Crypt;
 
 class CpanelLoginDetailsNotification extends Notification
 {
     use Queueable;
+
+    public $hosting;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Hosting $hosting)
     {
-        //
+        $this->hosting = $hosting;
     }
 
     /**
@@ -40,10 +43,14 @@ class CpanelLoginDetailsNotification extends Notification
      */
     public function toMail($notifiable)
     {
+        $password = Crypt::decryptString($this->hosting->password);
+        $link = 'https://alpha.freehosting.co.zw:2083';
+        
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->subject('Cpanel Login Details: ' . $this->hosting->domain)
+                    ->line('Username: ' . $this->hosting->username)
+                    ->line('Password: ' . $password)
+                    ->line('Link: ' . $link);
     }
 
     /**
