@@ -11,6 +11,8 @@ use App\Listeners\ProcessOrder;
 use App\Listeners\SendOrderCompletedNotificationToClient;
 use App\Listeners\SendOrderCompletedNotificationToAdmin;
 use App\Listeners\SendUserCreatedNotificationToAdmin;
+use App\Listeners\ProvisionHosting;
+use App\Listeners\RegisterDomain;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -25,7 +27,8 @@ class EventServiceProvider extends ServiceProvider
             SendUserCreatedNotificationToAdmin::class,
         ],
         OrderCompleted::class => [
-            ProcessOrder::class,
+            ProvisionHosting::class,
+            RegisterDomain::class,
             SendOrderCompletedNotificationToAdmin::class,
             SendOrderCompletedNotificationToClient::class,
         ],
