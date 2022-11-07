@@ -22,18 +22,35 @@ class ResellmeRegistrar implements DomainRegistrarInterface
         $client = new Client($token);
 
         // Domain Owner
+        $contact = $domain->contact;
         $contacts = [
-            "registrant" => $domain->contact->toArray()
+            "registrant" => [
+                "first_name"    =>  $contact->first_name,
+                "last_name"     =>  $contact->last_name,
+                "email"         =>  $contact->email,
+                "company"       =>  $contact->company,
+                "mobile"        =>  $contact->mobile,
+                "street_address"=>  $contact->street_address,
+                "core_business" =>  $contact->core_business,
+                "city"          =>  $contact->city,
+                "country"       =>  $contact->country,
+            ];
         ];
 
         // Nameservers
+        $nameserver = $domain->nameserver;
         if (is_null($domain->nameserver)) {
             $nameservers = [
                 'ns1.freehosting.co.zw',
                 'ns2.freehosting.co.zw',
             ];
         } else {
-            $nameservers = $domain->nameserver->toArray();
+            $nameservers = [
+                "ns1"   =>  $nameserver->ns1,
+                "ns2"   =>  $nameserver->ns2,
+                "ns3"   =>  $nameserver->ns3,
+                "ns4"   =>  $nameserver->ns4,
+            ];
         }        
 
         // Prepare the data
