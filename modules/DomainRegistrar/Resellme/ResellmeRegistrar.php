@@ -41,8 +41,8 @@ class ResellmeRegistrar implements DomainRegistrarInterface
         $nameserver = $domain->nameserver;
         if (is_null($domain->nameserver)) {
             $nameservers = [
-                'ns1.freehosting.co.zw',
-                'ns2.freehosting.co.zw',
+                "ns1" => 'ns1.freehosting.co.zw',
+                "ns2" => 'ns2.freehosting.co.zw',
             ];
         } else {
             $nameservers = [
