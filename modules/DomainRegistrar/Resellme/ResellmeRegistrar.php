@@ -34,7 +34,7 @@ class ResellmeRegistrar implements DomainRegistrarInterface
                 "core_business" =>  $contact->core_business,
                 "city"          =>  $contact->city,
                 "country"       =>  $contact->country,
-            ];
+            ]
         ];
 
         // Nameservers
