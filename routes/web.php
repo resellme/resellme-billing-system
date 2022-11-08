@@ -51,6 +51,7 @@ Route::middleware(['auth:sanctum', 'verified'])
     Route::resource('orders', OrderController::class);
     Route::post('orders/{order}/checkout', CheckoutController::class)->name('orders.checkout');
     // Route::post('orders/{order}/complete', [CompleteOrderController::class, 'complete'])->name('orders.complete');
-    Route::post('/paynow/callback', PaynowCallbackController::class)->name('paynow_callback');
+    // Route::post('/paynow/callback', PaynowCallbackController::class)->name('paynow_callback');
+    Route::post('/paynow/callback', [CompleteOrderController::class, 'callback')->name('paynow_callback');
     Route::get('/paynow/complete', [CompleteOrderController::class, 'complete'])->name('paynow_complete_order');
 });

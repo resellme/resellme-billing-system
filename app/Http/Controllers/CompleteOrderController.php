@@ -31,47 +31,28 @@ class CompleteOrderController extends Controller
     }
 
     public function callback(Request $request) {
-        // Verify payment using the poll url
-        // Provision services
-        // and show appropriate page
-        $orderId = $request->reference;
-
-        $order = Order::find($orderId);
+        \Log::info('Callback from Paynow');
         $status = $request->status;
         $pollUrl = $request->pollurl;
+        $orderId = $request->reference;
+        $order = Order::find($orderId);
         $paynowreference = $request->paynowreference;
-
-        dd($status);
 
         if ($status == 'Paid' || $status == 'Awaiting Delivery' || $status == 'Delivered') {
             // Update transation status
             $order->status = 'completed';
             $order->save();
 
-            // Provision Services
-            foreach ($order->orderItems as $key => $orderItem) {
-                if ($orderItem->service_type == 'hosting') {
-                    $hosting = Hosting::find($orderItem->record_id);
-                    $this->cp->create($hosting);
-                } elseif ($orderItem->service_type == 'domain') {
-                    $domain = Domain::find($orderItem->record_id);
-                    $this->domainRegistrar->register($domain);
-                }
-            }
-        
-            return view('orders.complete');
+            // Trigger Funds Loaded Event
+            event(new OrderCompleted($order));
+
+        } else {
+           \Log::error('Transaction failed ' . $order->id);
         }
     }
 
     public function complete(Order $order)
     {
-        $order = Order::orderBy('id', 'DESC')->first();
-        $order->status = 'completed';
-        $order->save();
-
-        // Trigger Funds Loaded Event
-        event(new OrderCompleted($order));
-
         return view('orders.complete');
     }
 }
