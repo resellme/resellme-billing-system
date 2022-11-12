@@ -30,27 +30,6 @@ class CompleteOrderController extends Controller
         $this->domainRegistrar = $domainRegistrar;
     }
 
-    public function callback(Request $request) {
-        \Log::info('Callback from Paynow');
-        $status = $request->status;
-        $pollUrl = $request->pollurl;
-        $orderId = $request->reference;
-        $order = Order::find($orderId);
-        $paynowreference = $request->paynowreference;
-
-        if ($status == 'Paid' || $status == 'Awaiting Delivery' || $status == 'Delivered') {
-            // Update transation status
-            $order->status = 'completed';
-            $order->save();
-
-            // Trigger Funds Loaded Event
-            event(new OrderCompleted($order));
-
-        } else {
-           \Log::error('Transaction failed ' . $order->id);
-        }
-    }
-
     public function complete(Order $order)
     {
         return view('orders.complete');
