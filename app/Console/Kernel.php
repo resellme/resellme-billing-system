@@ -16,8 +16,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-       $schedule->command('horizon:snapshot')->everyFiveMinutes();
-       $schedule->job(new CheckPaynowCompletedPayments)->everyFiveMinutes();
+       // $schedule->command('horizon:snapshot')->everyFiveMinutes();
+       $schedule->job(new CheckPaynowCompletedPayments, 'default', 'redis')->everyFiveMinutes();
     }
 
     /**

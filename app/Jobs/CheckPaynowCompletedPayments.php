@@ -43,21 +43,28 @@ class CheckPaynowCompletedPayments implements ShouldQueue
         $pendingOrders = Order::where('status', 'pending')->get();
 
         foreach ($pendingOrders as $key => $order) {
+            $status = '';
             // Poll URL
-            $status = $paynow->pollTransaction($order->paynow_poll_url);
+            try {
+                if( ! is_null($order->paynow_poll_url)) {  
+                    $status = $paynow->pollTransaction($order->paynow_poll_url);
+                }
 
-            if ($status == 'Paid' || $status == 'Awaiting Delivery' || $status == 'Delivered') {
-            // Update transation status
-            $order->status = 'completed';
-            $order->save();
-
-            // Trigger Funds Loaded Event
-            event(new OrderCompleted($order));
-
-            } else {
-                $order->status = 'failed';
+                if ($status == 'Paid' || $status == 'Awaiting Delivery' || $status == 'Delivered') {
+                // Update transation status
+                $order->status = 'completed';
                 $order->save();
-               \Log::error('Transaction failed ' . $order->id . ' Status: ' . $status) ;
+
+                // Trigger Funds Loaded Event
+                event(new OrderCompleted($order));
+
+                } else {
+                    $order->status = 'failed';
+                    $order->save();
+                   \Log::error('Transaction failed ' . $order->id . ' Status: ' . $status) ;
+                }
+            } catch(\Exception $ex) {
+                \Log::error('Failed to poll Order: ' . $order->id . ' Error: ' . $ex->getMessage());
             }
         }
     }
